@@ -1,0 +1,1077 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AUTO-HAUS TORQUE | Mobile Mechanic in Port Elizabeth</title>
+  <meta name="description" content="AUTO-HAUS TORQUE is a mobile mechanic in Port Elizabeth (Gqeberha), offering diagnostics, servicing, brakes, electrical work, and on-site vehicle repairs with fast response times." />
+  <style>
+    :root {
+      --bg: #0f1013;
+      --panel: #17191f;
+      --panel-2: #1e2129;
+      --text: #f4f4f5;
+      --muted: #b2b8c5;
+      --line: rgba(255,255,255,0.08);
+      --accent: #ffffff;
+      --accent-dark: #d8dbe2;
+      --success: #25D366;
+      --danger: #d43f2b;
+      --shadow: 0 20px 45px rgba(0,0,0,0.28);
+      --radius: 24px;
+      --max: 1180px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top right, rgba(255,255,255,0.05), transparent 24%),
+        linear-gradient(180deg, #0d0e12 0%, #111319 100%);
+      color: var(--text);
+      line-height: 1.55;
+    }
+
+    img { max-width: 100%; display: block; }
+    #gallery .card img {
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+      border-radius: 16px;
+      transition: transform 0.3s ease;
+    }
+
+    .vehicle-card, .job-card {
+      overflow: hidden;
+      transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
+    }
+
+    .vehicle-card:hover, .job-card:hover {
+      transform: translateY(-6px) scale(1.02);
+      box-shadow: 0 18px 34px rgba(0,0,0,0.34);
+      border-color: rgba(255,255,255,0.18);
+    }
+
+    .vehicle-card:hover img, .job-card:hover img {
+      transform: scale(1.06);
+    }
+
+    .vehicle-card p, .job-card p {
+      margin-top: 0.8rem;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    .container {
+      width: min(var(--max), calc(100% - 2rem));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(14px);
+      background: rgba(15,16,19,0.82);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .topbar-inner {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+      text-decoration: none;
+      min-width: 0;
+    }
+
+    .brand img {
+      height: 48px;
+      width: auto;
+      display: block;
+      border-radius: 12px;
+      flex-shrink: 0;
+    }
+
+    .brand-copy strong {
+      display: block;
+      font-size: 0.95rem;
+      letter-spacing: 0.08em;
+    }
+
+    .brand-copy span {
+      display: block;
+      color: var(--muted);
+      font-size: 0.8rem;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .chip, .btn, .btn-secondary {
+      border-radius: 999px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.55rem;
+      font-weight: 700;
+      transition: 0.25s ease;
+      white-space: nowrap;
+    }
+
+    .chip {
+      padding: 0.65rem 1rem;
+      font-size: 0.9rem;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--line);
+      color: var(--muted);
+    }
+
+    .btn {
+      padding: 0.95rem 1.4rem;
+      background: var(--success);
+      color: white;
+      box-shadow: 0 10px 22px rgba(37,211,102,0.22);
+    }
+
+    .btn:hover { transform: translateY(-2px); }
+
+    .btn-secondary {
+      padding: 0.95rem 1.4rem;
+      background: white;
+      color: #111319;
+    }
+
+    .hero {
+      padding: 3.2rem 0 2rem;
+    }
+
+    .hero-wrap {
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01)),
+        linear-gradient(135deg, #161820 0%, #111319 60%, #0f1013 100%);
+      border: 1px solid var(--line);
+      border-radius: 34px;
+      padding: 2rem;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .hero-wrap::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
+      transform: translateX(-100%);
+      animation: sweep 7s linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes sweep {
+      to { transform: translateX(100%); }
+    }
+
+    .hero-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.05);
+      padding: 0.55rem 0.9rem;
+      border-radius: 999px;
+      color: var(--muted);
+      font-size: 0.86rem;
+      margin-bottom: 1rem;
+    }
+
+    h1 {
+      font-size: clamp(2.3rem, 5vw, 4.6rem);
+      line-height: 0.95;
+      letter-spacing: -0.04em;
+      margin-bottom: 1rem;
+      max-width: 10ch;
+    }
+
+    .hero p.lead {
+      color: var(--muted);
+      max-width: 58ch;
+      font-size: 1.05rem;
+    }
+
+    .hero-points {
+      margin: 1.35rem 0 1.6rem;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.9rem;
+    }
+
+    .hero-points div {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 0.95rem 1rem;
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 0.9rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.2rem;
+    }
+
+    .hero-note {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .hero-card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.03));
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      padding: 1.4rem;
+    }
+
+    .hero-logo {
+      background: #111319;
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 1.2rem;
+      margin-bottom: 1rem;
+      min-height: 220px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-logo img {
+      width: 100%;
+      max-height: 210px;
+      object-fit: contain;
+      display: block;
+      filter: drop-shadow(0 10px 24px rgba(0,0,0,0.35));
+    }
+
+    .mini-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.8rem;
+    }
+
+    .mini-stat {
+      border-radius: 18px;
+      padding: 1rem 0.8rem;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--line);
+      text-align: center;
+    }
+
+    .mini-stat strong {
+      display: block;
+      font-size: 1.25rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .section {
+      padding: 1.2rem 0;
+    }
+
+    .grid-3, .grid-4, .pricing-grid, .testimonial-grid, .service-grid {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .grid-3 { grid-template-columns: repeat(3, 1fr); }
+    .grid-4 { grid-template-columns: repeat(4, 1fr); }
+    .service-grid { grid-template-columns: repeat(3, 1fr); }
+    .pricing-grid { grid-template-columns: repeat(4, 1fr); }
+    .testimonial-grid { grid-template-columns: repeat(3, 1fr); }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .section-head h2 {
+      font-size: clamp(1.5rem, 2vw, 2.3rem);
+      letter-spacing: -0.03em;
+    }
+
+    .section-head p { color: var(--muted); max-width: 60ch; }
+
+    .card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      box-shadow: var(--shadow);
+    }
+
+    .card h3 { margin-bottom: 0.45rem; font-size: 1.1rem; }
+    .card p, .card li { color: var(--muted); }
+
+    .trust-card span {
+      font-size: 1.65rem;
+      display: inline-flex;
+      margin-bottom: 0.8rem;
+    }
+
+    .service-card ul {
+      list-style: none;
+      margin-top: 0.8rem;
+      display: grid;
+      gap: 0.55rem;
+    }
+
+    .service-card li {
+      background: rgba(255,255,255,0.04);
+      padding: 0.6rem 0.8rem;
+      border-radius: 12px;
+      transition: all 0.25s ease;
+      cursor: pointer;
+      border: 1px solid transparent;
+    }
+
+    .service-card li:hover {
+      transform: scale(1.07);
+      background: rgba(255,255,255,0.10);
+      border-color: rgba(255,255,255,0.25);
+      box-shadow: 0 12px 28px rgba(0,0,0,0.35);
+    }
+
+    .service-card li::before {
+      content: "⚙️";
+      margin-right: 0.55rem;
+      color: white;
+      font-weight: 900;
+    }
+
+    .price-card {
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* ELECTRICAL ANIMATION */
+    .price-card.electric::after {
+      content: "⚡";
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      font-size: 1.4rem;
+      opacity: 0.7;
+      animation: electricPulse 1.2s infinite ease-in-out;
+    }
+
+    .price-card.electric {
+      box-shadow: 0 0 0 rgba(255,255,255,0.0);
+      animation: glowPulse 2s infinite ease-in-out;
+    }
+
+    /* FLASH LINE (ON HOVER) */
+    .price-card.electric::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -120%;
+      width: 60%;
+      height: 100%;
+      background: linear-gradient(120deg, transparent, rgba(255,255,255,0.6), transparent);
+      transform: skewX(-20deg);
+      opacity: 0;
+    }
+
+    .price-card.electric:hover::before {
+      opacity: 1;
+      animation: flashSweep 0.7s ease forwards;
+    }
+
+    @keyframes flashSweep {
+      0% { left: -120%; }
+      100% { left: 140%; }
+    }
+
+    @keyframes electricPulse {
+      0% { transform: scale(1) rotate(0deg); opacity: 0.5; }
+      50% { transform: scale(1.25) rotate(10deg); opacity: 1; }
+      100% { transform: scale(1) rotate(0deg); opacity: 0.5; }
+    }
+
+    @keyframes glowPulse {
+      0% { box-shadow: 0 0 0 rgba(255,255,255,0.0); }
+      50% { box-shadow: 0 0 18px rgba(255,255,255,0.25); }
+      100% { box-shadow: 0 0 0 rgba(255,255,255,0.0); }
+    }
+      50% { box-shadow: 0 0 18px rgba(255,255,255,0.25); }
+      100% { box-shadow: 0 0 0 rgba(255,255,255,0.0); }
+    }
+
+    .price-badge {
+      display: inline-block;
+      margin-bottom: 0.85rem;
+      padding: 0.4rem 0.75rem;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid var(--line);
+      font-size: 0.82rem;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .price {
+      font-size: 2rem;
+      font-weight: 900;
+      letter-spacing: -0.05em;
+      margin: 0.25rem 0 0.6rem;
+    }
+
+    .price-card.featured {
+      background: linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.03));
+      outline: 1px solid rgba(255,255,255,0.18);
+      transform: translateY(-4px);
+    }
+
+    .promo-card {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 1.2rem;
+      align-items: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .promo-card::before {
+      content: "PROMO";
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      padding: 0.45rem 0.7rem;
+      border-radius: 999px;
+      background: var(--danger);
+      color: white;
+    }
+
+    .promo-image {
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.04);
+    }
+
+    .promo-image img {
+      width: 100%;
+      height: 100%;
+      min-height: 280px;
+      object-fit: cover;
+    }
+
+    .promo-copy h3 {
+      font-size: 1.5rem;
+      margin-bottom: 0.45rem;
+    }
+
+    .promo-copy p {
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+
+    .promo-list {
+      display: grid;
+      gap: 0.7rem;
+      margin-bottom: 1rem;
+    }
+
+    .promo-item {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 0.7rem 0.85rem;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--line);
+    }
+
+    .promo-item strong {
+      color: white;
+    }
+
+    .promo-total {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.95rem 1rem;
+      border-radius: 16px;
+      background: linear-gradient(135deg, rgba(212,63,43,0.18), rgba(255,255,255,0.06));
+      border: 1px solid rgba(212,63,43,0.35);
+      margin-bottom: 1rem;
+    }
+
+    .promo-total strong:last-child {
+      font-size: 1.4rem;
+    }
+
+    .location-list {
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.7rem;
+      margin-top: 1rem;
+    }
+
+    .location-list li {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 0.85rem 1rem;
+    }
+
+    .cta-panel {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .cta-panel h2 {
+      font-size: clamp(1.8rem, 3vw, 3rem);
+      margin-bottom: 0.8rem;
+      line-height: 0.96;
+    }
+
+    .testimonial-card p {
+      margin-bottom: 0.8rem;
+      font-style: italic;
+    }
+
+    .testimonial-card strong {
+      display: block;
+      color: white;
+    }
+
+    .contact-box {
+      display: grid;
+      gap: 0.8rem;
+    }
+
+    .contact-item {
+      padding: 0.95rem 1rem;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--line);
+    }
+
+    .floating-whatsapp {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      z-index: 100;
+      text-decoration: none;
+      background: var(--success);
+      color: white;
+      padding: 0.95rem 1.1rem;
+      border-radius: 999px;
+      font-weight: 800;
+      box-shadow: 0 12px 28px rgba(37,211,102,0.35);
+    }
+
+    footer {
+      padding: 2rem 0 3rem;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid,
+      .grid-3,
+      .grid-4,
+      .service-grid,
+      .pricing-grid,
+      .testimonial-grid,
+      .cta-panel {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .hero-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 680px) {
+      .topbar-inner,
+      .section-head,
+      .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .nav-actions { justify-content: stretch; }
+      .nav-actions > * { width: 100%; }
+
+      .grid-3,
+      .grid-4,
+      .service-grid,
+      .pricing-grid,
+      .testimonial-grid,
+      .cta-panel,
+      .hero-points,
+      .mini-stats,
+      .location-list,
+      .promo-card {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-wrap { padding: 1.2rem; border-radius: 24px; }
+      h1 { max-width: none; }
+      .brand-copy span { display: none; }
+      .floating-whatsapp { left: 16px; right: 16px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a href="#top" class="brand">
+        <img src="https://raw.githubusercontent.com/Zachy065/Our-Work-/main/logo.png" alt="AUTO-HAUS TORQUE logo" />
+        <div class="brand-copy">
+          <strong>AUTO-HAUS TORQUE</strong>
+          <span>Mobile mechanic in Port Elizabeth</span>
+        </div>
+      </a>
+      <div class="nav-actions">
+        <a class="chip" href="tel:0636733411">📞 063 673 3411</a>
+        <a class="btn" href="https://wa.me/27636733411">💬 WhatsApp Booking</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container">
+        <div class="hero-wrap">
+          <div class="hero-grid">
+            <div>
+              <div class="eyebrow">⚡ Same-day mobile mechanic service in Port Elizabeth</div>
+              <h1>Service, diagnostics and repairs at your location.</h1>
+              <p class="lead">AUTO-HAUS TORQUE brings premium mobile mechanic service to Port Elizabeth and surrounding areas. We handle servicing, brakes, diagnostics and electrical faults without the cost and inconvenience of towing.</p>
+
+              <div class="hero-points">
+                <div>✅ We come to you</div>
+                <div>✅ No hidden call-out surprises</div>
+                <div>✅ Clean work, no mess left behind</div>
+                <div>✅ Fast WhatsApp response</div>
+              </div>
+
+              <div class="hero-actions">
+                <a class="btn" href="https://wa.me/27636733411">📲 Book Service Now</a>
+                <a class="btn-secondary" href="tel:0636733411">Call 063 673 3411</a>
+              </div>
+              <p class="hero-note">Serving Port Elizabeth (Gqeberha), Walmer, Summerstrand, Newton Park, Uitenhage, Despatch and nearby areas.</p>
+            </div>
+
+            <div class="hero-card">
+              <div class="hero-logo">
+                <img src="https://raw.githubusercontent.com/Zachy065/Our-Work-/main/logo.png" alt="AUTO-HAUS TORQUE logo" />
+              </div>
+              <div class="mini-stats">
+                <div class="mini-stat">
+                  <strong>30min</strong>
+                  <span>WhatsApp reply</span>
+                </div>
+                <div class="mini-stat">
+                  <strong>1-3h</strong>
+                  <span>Typical arrival</span>
+                </div>
+                <div class="mini-stat">
+                  <strong>7 days</strong>
+                  <span>Bookings available</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="grid-4">
+          <article class="card trust-card">
+            <span>🛡️</span>
+            <h3>Built on trust</h3>
+            <p>Transparent communication before any work starts. You know what is being done and why.</p>
+          </article>
+          <article class="card trust-card">
+            <span>🔧</span>
+            <h3>Quality workmanship</h3>
+            <p>Clean, careful repairs and servicing focused on reliability, not shortcuts.</p>
+          </article>
+          <article class="card trust-card">
+            <span>💸</span>
+            <h3>Fair pricing</h3>
+            <p>Clear rates for common work and quotes for larger jobs before parts are fitted.</p>
+          </article>
+          <article class="card trust-card">
+            <span>🧼</span>
+            <h3>Clean work guarantee</h3>
+            <p>Your driveway matters. No oil stains, loose parts or rubbish left behind.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="services">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Core services</h2>
+            <p>The most requested jobs we handle on-site across Port Elizabeth.</p>
+          </div>
+        </div>
+        <div class="service-grid">
+          <article class="card service-card">
+            <h3>Vehicle servicing</h3>
+            <p>Routine maintenance done at your home or workplace.</p>
+            <ul>
+              <li>Minor service</li>
+              <li>Oil and filter change</li>
+              <li>Battery check</li>
+              <li>General health inspection</li>
+            </ul>
+          </article>
+          <article class="card service-card">
+            <h3>Brakes and safety checks</h3>
+            <p>Brake work with attention to road safety and wear patterns.</p>
+            <ul>
+              <li>Brake pad replacement</li>
+              <li>Brake system inspection</li>
+              <li>Fluid top-up</li>
+              <li>Disc and wear assessment</li>
+            </ul>
+          </article>
+          <article class="card service-card">
+            <h3>Diagnostics and electrical</h3>
+            <p>When the vehicle will not start or warning lights appear, we diagnose first.</p>
+            <ul>
+              <li>OBD diagnostics</li>
+              <li>Battery and charging test</li>
+              <li>Starting faults</li>
+              <li>Electrical troubleshooting</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="pricing">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Pricing guide</h2>
+            <p>Clear labour pricing for common jobs. Parts are quoted separately where needed, and we can also source and quote parts for you.</p>
+          </div>
+          <a class="btn-secondary" href="https://wa.me/27636733411">Get a Quote</a>
+        </div>
+        <div class="pricing-grid">
+          <article class="card price-card electric">
+            <div class="price-badge">Electrical ⚡</div>
+            <h3>Electrical Diagnostics</h3>
+            <div class="price">R300</div>
+            <p>Fault finding and electrical diagnostics. Parts and additional repairs are quoted separately.</p>
+          </article>
+          <article class="card price-card featured">
+            <div class="price-badge">Popular service</div>
+            <h3>Minor Service</h3>
+            <div class="price">R450</div>
+            <p>Standard minor service labour. Oil, filter and any extra parts are confirmed before fitting.</p>
+          </article>
+          <article class="card price-card">
+            <div class="price-badge">Brake work</div>
+            <h3>Brake Service</h3>
+            <div class="price">R400</div>
+            <p>Brake service labour for inspection and standard brake work. Parts are charged separately where needed.</p>
+          </article>
+          <article class="card price-card">
+            <div class="price-badge">Drivetrain</div>
+            <h3>Clutch Repair</h3>
+            <div class="price">R800</div>
+            <p>Starting labour price for clutch repair work. Final quote depends on the vehicle and parts required.</p>
+          </article>
+          <article class="card price-card">
+            <div class="price-badge">Ride & handling</div>
+            <h3>Suspension</h3>
+            <div class="price">R650</div>
+            <p>Starting labour price for suspension-related repairs and replacement work.</p>
+            <ul>
+              <li><strong>Drivetrain:</strong> CV joint replacement</li>
+              <li><strong>Ride:</strong> Shock absorber replacement</li>
+              <li><strong>Steering:</strong> Tie rod ends, steering issues</li>
+              <li><strong>Stability:</strong> Stabilizers</li>
+            </ul>
+          </article>
+        </div>
+
+        <div class="card" style="margin-top: 1rem;">
+          <p style="color: var(--muted); margin-bottom: 0.9rem;">Parts are not automatically included in labour pricing. We confirm the correct parts first and can quote parts for you before any work starts.</p>
+          <div class="section-head" style="margin-bottom: 0.6rem;">
+            <div>
+              <h2 style="font-size: 1.35rem;">Vehicles we service (Major & Minor Service)</h2>
+              <p>Major service labour starts from R850. Parts are quoted separately based on your vehicle.</p>
+            </div>
+          </div>
+          <div class="grid-4">
+            <a class="card vehicle-card" href="https://wa.me/27636733411?text=Hi%20AUTO-HAUS%20TORQUE%2C%20I%20need%20a%20major%20service%20quote%20for%20a%20hatchback.">
+              <img src="https://raw.githubusercontent.com/Zachy065/Our-Work-/main/Hatchbacks.png" alt="Hatchback">
+              <p>Hatchback — from R850 (parts quoted separately)</p>
+            </a>
+            <a class="card vehicle-card" href="https://wa.me/27636733411?text=Hi%20AUTO-HAUS%20TORQUE%2C%20I%20need%20a%20major%20service%20quote%20for%20a%20sedan.">
+              <img src="https://raw.githubusercontent.com/Zachy065/Our-Work-/main/Sedan.png" alt="Sedan">
+              <p>Sedan — from R850 (parts quoted separately)</p>
+            </a>
+            <a class="card vehicle-card" href="https://wa.me/27636733411?text=Hi%20AUTO-HAUS%20TORQUE%2C%20I%20need%20a%20major%20service%20quote%20for%20a%20bakkie.">
+              <img src="https://raw.githubusercontent.com/Zachy065/Our-Work-/main/bakkie.png" alt="Bakkie">
+              <p>Bakkie — from R850 (parts quoted separately)</p>
+            </a>
+            <a class="card vehicle-card" href="https://wa.me/27636733411?text=Hi%20AUTO-HAUS%20TORQUE%2C%20I%20need%20a%20major%20service%20quote%20for%20a%20minibus.">
+              <img src="https://raw.githubusercontent.com/Zachy065/Our-Work-/main/MInibus.png" alt="Minibus">
+              <p>Minibus — from R850 (parts quoted separately)</p>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="promo">
+      <div class="container">
+        <div class="card promo-card">
+          <div class="promo-image">
+            <img src="https://raw.githubusercontent.com/Zachy065/Our-Work-/main/Hatchbacks.png" alt="VW Polo 1.0 hatchback minor service promo">
+          </div>
+          <div class="promo-copy">
+            <div class="price-badge">Hatchback Promo</div>
+            <h3>VW Polo 1.0 Minor Service</h3>
+            <p>Example minor service promo for a hatchback. Parts brands may vary, and final pricing can change depending on the exact vehicle and parts selected.</p>
+
+            <div class="promo-list">
+              <div class="promo-item"><span>Minor service labour</span><strong>R450</strong></div>
+              <div class="promo-item"><span>Engine oil (5W-40 Wolf Oil)</span><strong>R435</strong></div>
+              <div class="promo-item"><span>Oil filter (MAHLE)</span><strong>R215</strong></div>
+              <div class="promo-item"><span>Spark plugs (NGK R x3)</span><strong>R435</strong></div>
+              <div class="promo-item"><span>Air filter (GUD)</span><strong>R250</strong></div>
+            </div>
+
+            <div class="promo-total">
+              <strong>Total cost</strong>
+              <strong>R1,785</strong>
+            </div>
+
+            <a class="btn" href="https://wa.me/27636733411?text=Hi%20AUTO-HAUS%20TORQUE%2C%20I%20would%20like%20the%20VW%20Polo%201.0%20minor%20service%20promo.">💬 Claim This Promo</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head"><div><h2>Featured jobs</h2><p>Recent repair work completed by AUTO-HAUS TORQUE. Hover to highlight each job.</p></div></div>
+        <div class="grid-4" id="gallery">
+          <div class="card job-card"><img src="https://raw.githubusercontent.com/Zachy065/Our-Work-/main/IMG_3617.HEIC" alt="Recent work 1"><p>Recent repair work by AUTO-HAUS TORQUE</p></div>
+          <div class="card job-card"><img src="https://raw.githubusercontent.com/Zachy065/Our-Work-/main/9ea74f5d2c894c5ae1f9955eba23c75a.jpg" alt="Recent work 2"><p>On-site vehicle repair and inspection</p></div>
+          <div class="card job-card"><img src="https://raw.githubusercontent.com/Zachy065/Our-Work-/main/5e3721e4e2ae437c402df4717d5505ae.jpg" alt="Recent work 3"><p>Brake and suspension-related work</p></div>
+          <div class="card job-card"><img src="https://raw.githubusercontent.com/Zachy065/Our-Work-/main/57e75a5b4ce38ad282e035b8b308e235.jpg" alt="Recent work 4"><p>Professional mobile mechanic service</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="areas">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Service area</h2>
+            <p>Proudly operating in Port Elizabeth (Gqeberha) and surrounding neighbourhoods.</p>
+          </div>
+        </div>
+        <div class="card">
+          <ul class="location-list">
+            <li>Walmer</li>
+            <li>Summerstrand</li>
+            <li>Humewood</li>
+            <li>Newton Park</li>
+            <li>Greenacres</li>
+            <li>Lorraine</li>
+            <li>Rowallan Park</li>
+            <li>Uitenhage</li>
+            <li>Despatch</li>
+            <li>Colchester</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="how-it-works">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>How booking works</h2>
+            <p>A simple process to get your vehicle checked and booked in quickly.</p>
+          </div>
+        </div>
+        <div class="grid-4">
+          <article class="card trust-card">
+            <span>1</span>
+            <h3>Send your details</h3>
+            <p>WhatsApp your location, vehicle model, year and the problem you are experiencing.</p>
+          </article>
+          <article class="card trust-card">
+            <span>2</span>
+            <h3>Get your quote</h3>
+            <p>We assess the job, explain labour pricing and can also quote parts for you where needed.</p>
+          </article>
+          <article class="card trust-card">
+            <span>3</span>
+            <h3>Confirm booking</h3>
+            <p>Once you are happy with the quote, we confirm a booking time and service location.</p>
+          </article>
+          <article class="card trust-card">
+            <span>4</span>
+            <h3>We come to you</h3>
+            <p>We arrive on site, do the work professionally and leave the area clean afterwards.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="faq">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Questions & answers</h2>
+            <p>Quick answers to the questions customers usually ask before booking.</p>
+          </div>
+        </div>
+        <div class="grid-3">
+          <article class="card">
+            <h3>Do you come to my location?</h3>
+            <p>Yes. We provide mobile mechanic services in Port Elizabeth and surrounding areas, depending on booking availability and distance.</p>
+          </article>
+          <article class="card">
+            <h3>Do you charge a call-out fee?</h3>
+            <p>Pricing is explained before the job starts. If extra travel or parts are needed, that is discussed first so there are no surprises.</p>
+          </article>
+          <article class="card">
+            <h3>Do you bring parts?</h3>
+            <p>Yes, where possible. If your vehicle needs specific parts, we confirm the correct parts and pricing with you before fitting.</p>
+          </article>
+          <article class="card">
+            <h3>How long does a booking take?</h3>
+            <p>That depends on the job. Smaller services can often be done quickly, while major repairs may take longer after inspection.</p>
+          </article>
+          <article class="card">
+            <h3>Do you work on all car types?</h3>
+            <p>We work on a wide range of vehicles. Send your car model, year and issue on WhatsApp so we can confirm before booking.</p>
+          </article>
+          <article class="card">
+            <h3>How do I get a quote?</h3>
+            <p>Send your location, vehicle details and the problem on WhatsApp. We will advise on labour pricing and can also quote parts for you before confirming the booking.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    
+
+    <section class="section">
+      <div class="container">
+        <div class="card cta-panel" style="grid-template-columns:1fr; text-align:center; gap:1.2rem;">
+          <div>
+            <h2 style="margin-bottom:0.6rem;">Need a mechanic in Port Elizabeth today?</h2>
+            <p style="max-width:600px; margin:0 auto;">Send your car model, problem and location on WhatsApp for a fast response. Quick quotes, clear pricing and same-day assistance where possible.</p>
+          </div>
+
+          <div style="display:flex; flex-direction:column; gap:0.8rem; align-items:center;">
+            <a class="btn" style="min-width:260px;" href="https://wa.me/27636733411">💬 Get Quote on WhatsApp</a>
+            <a class="btn-secondary" style="min-width:260px;" href="tel:0636733411">📞 Call 063 673 3411</a>
+          </div>
+
+          <div class="contact-box" style="grid-template-columns:repeat(2,1fr); max-width:600px; margin:0 auto;">
+            <div class="contact-item">We source and quote parts for you</div>
+            <div class="contact-item">Port Elizabeth & surrounding areas</div>
+            <div class="contact-item">Fast mobile servicing & repairs</div>
+            <div class="contact-item">Transparent labour pricing</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    
+
+  </main>
+
+  <footer>
+    <div class="container">
+      <p><strong>AUTO-HAUS TORQUE</strong> — Premium mobile mechanic service in Port Elizabeth.</p>
+    </div>
+  </footer>
+
+  <a class="floating-whatsapp" href="https://wa.me/27636733411">💬 WhatsApp</a>
+
+
+  <!-- SERVICE POPUP -->
+  <div id="serviceModal" style="position:fixed; inset:0; background:rgba(0,0,0,0.7); display:none; align-items:center; justify-content:center; z-index:200;">
+    <div style="background:#17191f; padding:1.5rem; border-radius:20px; max-width:420px; width:90%; border:1px solid rgba(255,255,255,0.1);">
+      <h3 id="modalTitle" style="margin-bottom:0.6rem;"></h3>
+      <p id="modalText" style="color:#b2b8c5;"></p>
+      <br>
+      <a class="btn" href="https://wa.me/27636733411">Get Quote</a>
+      <br><br>
+      <button onclick="closeModal()" style="background:none; border:none; color:#fff; cursor:pointer;">Close</button>
+    </div>
+  </div>
+
+  <script>
+    const modal = document.getElementById('serviceModal');
+    const title = document.getElementById('modalTitle');
+    const text = document.getElementById('modalText');
+
+    document.querySelectorAll('.service-card li').forEach(item => {
+      item.addEventListener('click', () => {
+        title.innerText = item.innerText;
+        text.innerText = 'Send us a WhatsApp message for a quick quote and availability for this service.';
+        modal.style.display = 'flex';
+      });
+    });
+
+    function closeModal() {
+      modal.style.display = 'none';
+    }
+  </script>
+
+</body>
+</html>
